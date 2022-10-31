@@ -24,7 +24,7 @@ exports.createCourse = async (req, res) => {
 // ***** TÜM KURSLARI ALMA VE SIRALAMA
 exports.getAllCourses = async (req, res) => {
     try {
-        const courses = await Course.find(); // veritabanından kursları alma
+        const courses = await Course.find(); // veritabanından kursları getirme
         // 200 : başarılı istek
         res.status(200).render('courses', {
             courses, // sayfaya bulunan kursları gönderme
