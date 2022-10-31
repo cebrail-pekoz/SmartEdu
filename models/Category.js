@@ -21,7 +21,7 @@ const CategorySchema = new Schema({
 // ***** //KATEGORİ VERİ ŞEMASI
 
 // ***** KATEGORİ İSMİNDEN SLUG OLUŞTURMA MIDDLEWARE
-// veritabanına kaydetmeden önce kurs isminden slug oluşturacak
+// veritabanına kaydetmeden önce kategori isminden slug oluşturacak
 CategorySchema.pre('validate', function (next) {
     this.slug = slugify(this.name, {
         lower: true, // küçük harfe çevir
