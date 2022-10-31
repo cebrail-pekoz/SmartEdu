@@ -1,0 +1,60 @@
+### İSTEK ATILACAK URL
+@BASE_URL = http://127.0.0.1:3000
+
+
+
+### ANASAYFA İSTEĞİ
+GET {{BASE_URL}}
+
+
+
+### ABOUT SAYFASI İSTEĞİ
+GET {{BASE_URL}}/about
+
+
+
+### YENİ KURS OLUŞTURMA
+POST {{BASE_URL}}/courses
+Content-Type: application/json
+
+{
+    "name" : "Mongo DB",
+    "description" : "Günümüzde en çok kullanılan NoSQL veritabanını A'dan Z'ye öğreneceksiniz."
+}
+
+
+
+### TÜM KURSLARI GETİRME
+GET {{BASE_URL}}/courses
+
+
+
+### 
+
+###
+GET {{BASE_URL}}/99?sortBy=name
+
+
+###
+POST {{BASE_URL}}
+Content-Type: application/x-www-form-urlencoded
+
+isim=cebrail&yas=29
+
+
+
+###
+PATCH {{BASE_URL}}/api/users/635189e437dd99969b2f0774
+Content-Type: application/json
+
+{
+    // "_id" : "635189e437dd99969b2f0774"
+    "email" : "cc4"
+}
+
+
+
+###
+DELETE {{BASE_URL}}/api/users/63514de327041cc1c452177
+Content-Type: application/json
+

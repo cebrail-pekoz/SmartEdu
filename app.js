@@ -1,6 +1,9 @@
 // ***** MODÜLLER
-const express = require('express'); // node.js uygulama çatısı
-const ejs = require('ejs'); // template engine
+const express = require('express'); // node.js uygulama çatısı modülü
+const mongoose = require('mongoose'); // mongoDB veri şeması modülü
+
+const pageRouter = require('./routes/pageRoute'); // sayfalar yönlendirme dosyası
+const courseRouter = require('./routes/courseRoute'); // kurs yönlendirme dosyası
 // ***** //MODÜLLER
 
 // ***** UYGULAMA DEĞİŞKENLERİ
@@ -9,25 +12,31 @@ const LOCAL = '127.0.0.1'; // localhost
 const app = express(); // express uygulaması instance
 // ***** //UYGULAMA DEĞİŞKENLERİ
 
-// ***** TEMPLATE ENGINE
+// ***** VERİTABANI BAĞLANTISI
+mongoose
+    .connect('mongodb://localhost/smartedu-db', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log('VERİTABANINA BAĞLANDI ...');
+    })
+    .catch((err) => {
+        console.log(`!! VERİTABANI BAĞLANTI HATASI !! >>> ${err}`);
+    });
+// ***** //VERİTABANI BAĞLANTISI
+
 app.set('view engine', 'ejs'); // template engine ekleme
-app.use(express.static('public')); // statik dosyaların yolu  -middleware
-// ***** //TEMPLATE ENGINE
+
+// ***** MIDDLEWARES
+app.use(express.static('public')); // statik dosyaların yolu
+app.use(express.urlencoded({ extended: true })); // body verilerini alma
+app.use(express.json()); // body verilerini json formatına çevirme
+// ***** //MIDDLEWARES
 
 // ***** YÖNLENDİRMELER
-// anasayfa isteği
-app.get('/', (req, res) => {
-    res.status(200).render('index', {
-        page_name: 'index',
-    });
-});
-
-// about sayfası
-app.get('/about', (req, res) => {
-    res.status(200).render('about', {
-        page_name: 'about',
-    });
-});
+app.use('/', pageRouter); // http://127.0.0.1:3000/
+app.use('/courses', courseRouter); // http://127.0.0.1:3000/courses/
 // ***** //YÖNLENDİRMELER
 
 // ***** SERVER
