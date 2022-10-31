@@ -4,6 +4,7 @@ const mongoose = require('mongoose'); // mongoDB veri şeması modülü
 
 const pageRouter = require('./routes/pageRoute'); // sayfalar yönlendirme dosyası
 const courseRouter = require('./routes/courseRoute'); // kurs yönlendirme dosyası
+const categoryRouter = require('./routes/categoryRoute'); // kategori yönlendirme dosyası
 // ***** //MODÜLLER
 
 // ***** UYGULAMA DEĞİŞKENLERİ
@@ -18,11 +19,12 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
+    // promise
     .then(() => {
-        console.log('VERİTABANINA BAĞLANDI ...');
+        console.log('VERİTABANINA BAĞLANDI ...'); // başarılı bağlantı
     })
     .catch((err) => {
-        console.log(`!! VERİTABANI BAĞLANTI HATASI !! >>> ${err}`);
+        console.log(`!! VERİTABANI BAĞLANTI HATASI !! >>> ${err}`); // bağlantı hatası
     });
 // ***** //VERİTABANI BAĞLANTISI
 
@@ -37,6 +39,7 @@ app.use(express.json()); // body verilerini json formatına çevirme
 // ***** YÖNLENDİRMELER
 app.use('/', pageRouter); // http://127.0.0.1:3000/
 app.use('/courses', courseRouter); // http://127.0.0.1:3000/courses/
+app.use('/categories', categoryRouter); // http://127.0.0.1:3000/categories/
 // ***** //YÖNLENDİRMELER
 
 // ***** SERVER

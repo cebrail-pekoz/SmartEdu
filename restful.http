@@ -18,8 +18,9 @@ POST {{BASE_URL}}/courses
 Content-Type: application/json
 
 {
-    "name" : "Mongo DB",
-    "description" : "Günümüzde en çok kullanılan NoSQL veritabanını A'dan Z'ye öğreneceksiniz."
+    "name" : "C/C++",
+    "description" : "Temel Algoritmalar geliştirerek programlamanın temellerini öğrenin.",
+    "category" : "635fcacdfbbe5bded131dc2c"
 }
 
 
@@ -27,9 +28,23 @@ Content-Type: application/json
 ### TÜM KURSLARI GETİRME
 GET {{BASE_URL}}/courses
 
+### Web sitelerine işlevsellik katmak için kullanılan bir dil olan Javascript'in temellerini öğrenmiş olacaksınız
+### Javascript konusunda uzmanlaşmak isteyenler için hazırlanmış bir kurs
+### Javascript'i sadece Frontend tarafında değil, aynı zamanda Backend tarafında da kullanmak istiyorsanız bu kurs tam size göre
+### Günümüzde en çok kullanılan NoSQL veritabanını A'dan Z'ye öğreneceksiniz.
 
 
-### 
+
+### TÜM KATEGORİLERİ GETİRME
+POST {{BASE_URL}}/categories
+Content-Type: application/json
+
+{
+    "name" : "Yapay Zeka"
+}
+
+
+
 
 ###
 GET {{BASE_URL}}/99?sortBy=name

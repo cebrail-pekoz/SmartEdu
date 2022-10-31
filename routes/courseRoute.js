@@ -7,6 +7,7 @@ const router = express.Router(); // express Router
 // **** YÖNLENDİRMELER
 router.route('/').post(courseController.createCourse); // http://127.0.0.1:3000/courses | post isteği
 router.route('/').get(courseController.getAllCourses); // http://127.0.0.1:3000/courses | get isteği
+router.route('/:slug').get(courseController.getCourse); // http://127.0.0.1:3000/courses/slug | get isteği
 // **** //YÖNLENDİRMELER
 
 module.exports = router; // modülü dışa açma
