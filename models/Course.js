@@ -32,6 +32,10 @@ const CourseSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, // kurslara kategori ekleme
         ref: 'Category', // referans verme | ilişkilendirme
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId, // user ile ilişkilendirme
+        ref: 'User', // referans verme | ilişkilendirme
+    },
 });
 // ***** //KURSLAR VERİ ŞEMASI
 

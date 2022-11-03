@@ -6,11 +6,8 @@ const Category = require('../models/Category');
 exports.createCategory = async (req, res) => {
     try {
         const category = await Category.create(req.body); // body'den verileri yakalama
-        // -- 200 : oluşturma isteği
-        res.status(201).json({
-            status: 'success', // sayfa cevabı
-            category, // sayfaya veriyi gönderme
-        });
+        // -- 201 : oluşturma isteği
+        res.status(201).redirect('/users/dashboard');
     } catch (err) {
         // -- 400 : kötü istek
         res.status(400).json({
@@ -20,3 +17,17 @@ exports.createCategory = async (req, res) => {
     }
 };
 // ***** //YENİ KATEGORİ OLUŞTURMA
+
+// ***** KATEGORİ SİLME
+exports.deleteCategory = async (req, res) => {
+    try {
+        await Category.findByIdAndRemove(req.params.id);
+        res.status(200).redirect('/users/dashboard');
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            error,
+        });
+    }
+};
+// ***** //KATEGORİ SİLME
